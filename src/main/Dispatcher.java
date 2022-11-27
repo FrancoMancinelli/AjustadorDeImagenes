@@ -40,6 +40,19 @@ public class Dispatcher {
 		defaultMaxWidth = prop.getProperty("maxwidth", defaultMaxWidth);
 		defaultMaxHeigth = prop.getProperty("maxheigth", defaultMaxHeigth);
 
+		initWatchService();
+
+	}
+
+	/**
+	 * Controla la actividad dentro de una carpeta.
+	 * Si detecta la inserción de un archivo realizará un traslado del mismo
+	 * a una carpeta de salida en caso de ser una imagen JPG
+	 * 
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
+	private static void initWatchService() throws IOException, InterruptedException {
 		// Se crea un WatchService para monitorear la actividad dentro de la carpeta
 		// indicada
 		WatchService watcher = FileSystems.getDefault().newWatchService();
@@ -68,7 +81,6 @@ public class Dispatcher {
 			}
 			key.reset();
 		}
-
 	}
 
 }
